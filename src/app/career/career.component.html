@@ -1,0 +1,32 @@
+<script src="register.component.ts"></script>
+<div class="flex justify-content-between">
+  <h2>Books</h2>
+  <p-button label="Add Book" (onClick)="showAddModal()"></p-button>
+</div>
+<p-table [value]="careers">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th pSortableColumn="name">Code <p-sortIcon field="name"></p-sortIcon></th>
+    </tr>
+    <tr>
+      <th></th>
+      <th><p-columnFilter type="text" field="name" >Name</p-columnFilter></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-career>
+    <tr>
+      <td>{{career.id}}</td>
+      <td>{{career.name}}</td>
+      <td>
+        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="showEditModal(career)">Edit</button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-add-edit-career [displayAddModal]="displayAddEditModal" (clickClose) = "hideAddModal($event)" (clickAddEdit)="saveUpdatePartoToList($event)" [selectEntity]="selectEntity"></app-add-edit-career>
+
+
+<p-confirmDialog></p-confirmDialog>
+<p-toast position="bottom-right"></p-toast>

@@ -1,0 +1,60 @@
+<p-dialog header="{{modalType}} Parte" [(visible)]="displayAddModal" [modal]="true" [style]="{width: '50vw'}"
+          [draggable]="false" [resizable]="false" (onHide)="closeModal()">
+
+  <form [formGroup]="bookForm" >
+    <div *ngIf=!selectBook class="field">
+      <label class="block" for="code">Code</label>
+      <input type="text" pInputText id="code" formControlName="code">
+      <small class="p-error block" *ngIf="bookForm.controls['code'].invalid && bookForm.controls['code'].dirty">
+        Code es requerido!
+      </small>
+    </div>
+    <div *ngIf=selectBook class="field">
+      <label class="block">Code: {{selectBook.code}}</label>
+    </div>
+
+    <div class="field">
+      <label class="block" for="title">Title</label>
+      <input type="text" pInputText id="title" formControlName="title">
+      <small class="p-error block" *ngIf="bookForm.controls['title'].invalid && bookForm.controls['title'].dirty">
+        Titulo es requerido!
+      </small>
+    </div>
+
+    <div class="field">
+      <label class="block" for="auth">Auth</label>
+      <input type="text" pInputText id="auth" formControlName="auth">
+      <small class="p-error block" *ngIf="bookForm.controls['auth'].invalid && bookForm.controls['auth'].dirty">
+        Autor es requerido!
+      </small>
+    </div>
+
+    <div class="field">
+      <label class="block" for="quantity">Cantidad inicial</label>
+      <p-inputNumber id="quantity" formControlName="quantity" [min]="1"></p-inputNumber>
+      <small class="p-error block" *ngIf="bookForm.controls['quantity'].invalid && bookForm.controls['quantity'].dirty">
+        Minimo existencias es requerido!
+      </small>
+    </div>
+
+    <div class="field">
+      <label class="block" >Editorial:</label>
+      <form [formGroup]="bookForm">
+        <p-listbox [options]="editorials" formControlName="idEditorial" optionLabel="name" [style]="{ width: '15rem' }" [listStyle]="{'max-height': '220px'}"></p-listbox>
+      </form>
+      <small class="p-error block" *ngIf="bookForm.controls['idEditorial'].invalid && bookForm.controls['idEditorial'].dirty">
+        Editorial es requerido!
+      </small>
+    </div>
+
+
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button  (click)="closeModal()" label="Cancelar" styleClass="p-button-text"></p-button>
+
+    <p-button (click)="addEditBook()" label="{{modalType}}" styleClass="p-button-text" [disabled]="bookForm.invalid"></p-button>
+
+  </ng-template>
+
+</p-dialog>

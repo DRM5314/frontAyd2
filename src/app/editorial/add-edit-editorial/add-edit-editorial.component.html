@@ -1,0 +1,22 @@
+<p-dialog header="{{modalType}} Parte" [(visible)]="displayAddModal" [modal]="true" [style]="{width: '50vw'}"
+          [draggable]="false" [resizable]="false" (onHide)="closeModal()">
+
+  <form [formGroup]="editorialForm" >
+        <div class="field">
+      <label class="block" for="name">Name</label>
+      <input type="text" pInputText id="name" formControlName="name">
+      <small class="p-error block" *ngIf="editorialForm.controls['name'].invalid && editorialForm.controls['name'].dirty">
+        Nombre es requerido!
+      </small>
+    </div>
+
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button  (click)="closeModal()" label="Cancelar" styleClass="p-button-text"></p-button>
+
+    <p-button (click)="addEditEditorial()" label="{{modalType}}" styleClass="p-button-text" [disabled]="editorialForm.invalid"></p-button>
+
+  </ng-template>
+
+</p-dialog>

@@ -1,0 +1,11 @@
+<p-dialog *ngIf="loan" header="Factura" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+          [draggable]="false" [resizable]="false" position="center" (onHide)="getStartSale()">
+  <p class="m-0" style="background: gold">Codigo Prestamo: {{loan.id}}</p>
+  <p class="m-0" >Codigo Libro: {{loan.bookCode.code}}</p>
+  <p class="m-0" >Estudiante: {{loan.carnet.name}}</p>
+  <p class="m-0" >Carnet: {{loan.carnet.carnet}}</p>
+  <p class="m-0" style="background: darkcyan; color: aliceblue">Fecha devoulcion {{loan.returnDate}}</p>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="getStartSale()" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

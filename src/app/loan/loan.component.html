@@ -1,0 +1,44 @@
+<script src="register.component.ts"></script>
+<div class="flex justify-content-between">
+  <h2>Books</h2>
+  <p-button label="Add Book" (onClick)="showAddModal()"></p-button>
+</div>
+<p-table [value]="books">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
+      <th>Title</th>
+      <th>Auth</th>
+      <th>Quantity</th>
+      <th>Date Publication</th>
+      <th>Editorial</th>
+    </tr>
+    <tr>
+      <th><p-columnFilter type="text" field="code" >Code</p-columnFilter></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <td></td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-book>
+    <tr>
+      <td>{{book.code}}</td>
+      <td>{{book.title}}</td>
+      <td>{{book.auth}}</td>
+      <td>{{book.quantity}}</td>
+      <td>{{book.datePublication}}</td>
+      <td>{{book.idEditorial.name}}</td>
+      <td>
+        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="showEditModal(book)" >Prestamo</button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-add-loan [displayAddModal]="displayAddEditModal" (clickClose) = "hideAddModal($event)" (clickAddEdit)="saveUpdatePartoToList($event)" [selectBook]="selectBook"></app-add-loan>
+
+
+<p-confirmDialog></p-confirmDialog>
+<p-toast position="bottom-right"></p-toast>

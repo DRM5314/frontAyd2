@@ -1,0 +1,52 @@
+<p-dialog header="{{modalType}} Parte" [(visible)]="displayAddModal" [modal]="true" [style]="{width: '50vw'}"
+          [draggable]="false" [resizable]="false" (onHide)="closeModal()">
+
+  <form [formGroup]="studentForm" >
+    <div *ngIf=!selectStudent class="field">
+      <label class="block" for="carnet">Carne</label>
+      <input type="text" pInputText id="carnet" formControlName="carnet">
+      <small class="p-error block" *ngIf="studentForm.controls['carnet'].invalid && studentForm.controls['carnet'].dirty">
+        Carne es requerido!
+      </small>
+    </div>
+    <div *ngIf=selectStudent class="field">
+      <label class="block">Code: {{selectStudent.carnet}}</label>
+    </div>
+
+    <div class="field">
+      <label class="block" for="name">Nombre</label>
+      <input type="text" pInputText id="name" formControlName="name">
+      <small class="p-error block" *ngIf="studentForm.controls['name'].invalid && studentForm.controls['name'].dirty">
+        Name es requerido!
+      </small>
+    </div>
+
+    <div class="field">
+      <label class="block" for="dteBirth">Fecha cumpleaños</label>
+      <input type="text" pInputText id="dteBirth" formControlName="dteBirth">
+      <small class="p-error block" *ngIf="studentForm.controls['dteBirth'].invalid && studentForm.controls['dteBirth'].dirty">
+        Fecha cumpleaños es requerido!
+      </small>
+    </div>
+
+    <div class="field">
+      <label class="block" >Carrera:</label>
+      <form [formGroup]="studentForm">
+        <p-listbox [options]="careers" formControlName="idCareer" optionLabel="name" [style]="{ width: '15rem' }" [listStyle]="{'max-height': '220px'}"></p-listbox>
+      </form>
+      <small class="p-error block" *ngIf="studentForm.controls['idCareer'].invalid && studentForm.controls['idCareer'].dirty">
+        Carrera es requerido!
+      </small>
+    </div>
+
+
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button  (click)="closeModal()" label="Cancelar" styleClass="p-button-text"></p-button>
+
+    <p-button (click)="addEditBook()" label="{{modalType}}" styleClass="p-button-text" [disabled]="studentForm.invalid"></p-button>
+
+  </ng-template>
+
+</p-dialog>
