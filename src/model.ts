@@ -45,8 +45,8 @@ export class CareerRequestDto{
   names!:string;
 }
 export class CareerUpdateRequestDto{
-  id:any;
-  name:any;
+  id!:any;
+  name!:any;
 }
 export class StudentCreateDto{
   name:any;
@@ -69,5 +69,9 @@ export class LoanDto{
   laonDate!:string;
   returnDate!:string;
   state!:string;
+}
+export class Credentials{
+  username!: string;
+  password!: string;
 }
 

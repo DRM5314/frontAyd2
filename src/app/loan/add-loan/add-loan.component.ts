@@ -53,24 +53,13 @@ export class AddLoanComponent {
   }
 
   addLoan(){
-    let currentDate = new Date();
-    let newDate = new Date();
-    newDate.setDate(currentDate.getDate() + 3);
-
-    let yearReturn = newDate.getFullYear();
-    let monthReturn = String(newDate.getMonth() + 1). padStart(2, '0');
-    let dayReturn = String(newDate.getDate()). padStart(2, '0');
-    let dateParseReturn = `${this.year}-${this.month}-${this.day}`
-
-
-
     var dateReturn = `${this.year}-${this.month}-${(this.day)}`
     var loan = new LoanCreateDto();
     loan.bookCode = this.selectBook.code;
     loan.carnet = this.loanForm.get('carnet')?.value;
     loan.laonDate = this.dateParse;
-    loan.returnDate = dateParseReturn;
     loan.status = "borrowed";
+    console.log(dateReturn)
     this.loanService.addLoan(loan,this.modalType).subscribe(
       response=>{
         this.closeModal();

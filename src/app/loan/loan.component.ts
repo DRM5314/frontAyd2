@@ -50,6 +50,7 @@ export class LoanComponent {
   }
   hideAddModal(isClose:boolean){
     this.displayAddEditModal = !isClose;
+    this.getBookList();
   }
   saveUpdatePartoToList(event:any){
     if(this.selectBook != null && this.selectBook.code === event.code){

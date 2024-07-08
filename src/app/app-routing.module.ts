@@ -1,18 +1,33 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {NavbarComponent} from "./navbar/navbar.component";
+import {mapToCanActivate, RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from "./auth/auth.guard";
 
 const routes: Routes = [
+  {path:'', redirectTo:'/homepage', pathMatch:'full'},
+  {
+    path: 'homepage',
+    loadComponent: () => import('./home/home-manager/home-manager.component')
+      .then(c => c.HomeManagerComponent)
+  },
+  {
+    path: 'home',
+    loadComponent: () => import('./home/home.component')
+      .then(c=> c.HomeComponent)
+  },
   {
     path:'books',
+    data: { requireAuthentication: true},
+    canActivate: mapToCanActivate([AuthGuard]),
     children:[
       {
         path:'list-books',
         loadComponent:() =>import('./book/register.component')
-          .then(c=>c.RegisterComponent)
+          .then(c=>c.RegisterComponent),
+        data: { requiredRol: ["ADMIN","STUDENT"]}
       },
       {
         path:'list-editorial',
+        data: { requiredRol: ["ADMIN"]},
         loadComponent:() =>import('./editorial/editorial.component')
           .then(c=>c.EditorialComponent)
       }
@@ -20,6 +35,8 @@ const routes: Routes = [
   },
   {
     path:'students',
+    data: { requireAuthentication: true, requiredRol: ['ADMIN'] },
+    canActivate: mapToCanActivate([AuthGuard]),
     children:[
       {
         path:'list-students',
@@ -35,6 +52,8 @@ const routes: Routes = [
   },
   {
     path:'loans',
+    data: { requireAuthentication: true, requiredRol: ['ADMIN'] },
+    canActivate: mapToCanActivate([AuthGuard]),
     children:[
       {
         path:'list-loans',
@@ -42,6 +61,16 @@ const routes: Routes = [
           .then(c=>c.LoanComponent)
       }
     ]
+  },
+  {
+    path:'login',
+    loadComponent:() => import('./auth/login/login.component')
+      .then(c => c.LoginComponent)
+  },
+  {
+    path: 'logout',
+    loadComponent: () => import('./auth/logout/logout.component')
+      .then(c => c.LogoutComponent)
   }
 ];
 

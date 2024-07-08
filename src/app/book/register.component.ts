@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import {BookService} from "./service/book.service";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {BookDto} from "../../model";
@@ -7,14 +7,15 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
 import {DialogModule} from "primeng/dialog";
 import {AddEditBookComponent} from "./add-edit-book/add-edit-book.component";
-import {EditorialService} from "../editorial/service/editorial.service";
+import {JwtService} from "../auth/jwt.service";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
   standalone:true,
-  imports: [TableModule, ConfirmDialogModule, ToastModule, DialogModule, AddEditBookComponent],
+  imports: [TableModule, ConfirmDialogModule, ToastModule, DialogModule, AddEditBookComponent,CommonModule],
   providers:[MessageService,ConfirmationService]
 })
 export class RegisterComponent {
@@ -22,10 +23,16 @@ export class RegisterComponent {
   books!:BookDto[];
   selectBook:any = false;
   displayAddEditModal:boolean = false;
+  jwtService: JwtService = inject(JwtService);
+  rol = this.jwtService.getClaim("rol");
   constructor(private bookService:BookService, private messageService: MessageService, private confirmationService: ConfirmationService) {
   }
   ngOnInit():void{
     this.getBookList();
+  }
+  isAdmin(){
+    if(this.rol=="ADMIN")return true;
+    return false;
   }
   getBookList(){
     this.bookService.getBooks().subscribe(

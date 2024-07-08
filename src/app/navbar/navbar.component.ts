@@ -1,17 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import { MenuItem } from 'primeng/api/menuitem';
-import { MenubarModule } from 'primeng/menubar';
-import { MenuItemFactory } from './menu-options';
-import { Router } from "@angular/router";
-
+import {AuthService} from "../auth/auth.service";
+import {JwtService} from "../auth/jwt.service";
+import {ChipModule} from "primeng/chip";
+import {CommonModule} from "@angular/common";
+import {MenubarModule} from "primeng/menubar";
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  standalone : true,
+  imports: [CommonModule, MenubarModule, ChipModule]
 })
 export class NavbarComponent implements OnInit {
 
   items: MenuItem[] | undefined ;
+  authService: AuthService = inject(AuthService);
+  jwtService: JwtService = inject(JwtService);
+  userName:string = this.jwtService.getClaim('user');
 
   ngOnInit(): void {
     this.items = this.MenuItem;
@@ -21,12 +27,14 @@ export class NavbarComponent implements OnInit {
     {
       label:'Libros',
       icon: 'pi pi-fw pi-user',
+      visible: this.authService.hasRequiredRol('ADMIN') || this.authService.hasRequiredRol('STUDENT') ,
       items:[
         {
-          label:'Gestion libros',
+          label:'Listado de libros',
           routerLink:'/books/list-books'
         },
         {
+          visible:this.authService.hasRequiredRol('ADMIN'),
           label:'Gestion Editoriales',
           routerLink:'/books/list-editorial'
         }
@@ -35,6 +43,7 @@ export class NavbarComponent implements OnInit {
     {
       label: 'Prestamos',
       icon: 'pi pi-fw pi-user',
+      visible: this.authService.hasRequiredRol('ADMIN'),
       items:[
         {
           label:'Nuevo prestamo',
@@ -45,6 +54,7 @@ export class NavbarComponent implements OnInit {
     {
       label: 'Estudiantes',
       icon: 'pi pi-fw pi-user',
+      visible: this.authService.hasRequiredRol('ADMIN'),
       items:[
         {
           label:'Estudiantes',
@@ -55,6 +65,12 @@ export class NavbarComponent implements OnInit {
           routerLink:'/students/list-careers'
         }
       ]
+    },
+    {
+      label: 'Salir',
+      visible: this.authService.hasRequiredRol('ADMIN') || this.authService.hasRequiredRol('STUDENT') ,
+      icon: 'pi pi-fw pi-power-off',
+      routerLink: '/logout',
     }
   ]
 }

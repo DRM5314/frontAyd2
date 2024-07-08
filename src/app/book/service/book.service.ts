@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {BookCreateDto, BookDto} from "../../../model";
+import {environment} from "../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-
+  private baseUrl = environment.apiUrl;
   constructor(private http:HttpClient) { }
-  private url: string = "http://localhost:3000/lb/api/book";
+  private url: string = `${this.baseUrl}/lb/api/book`;
 
   public getBooks():Observable<BookDto[]>{
     return this.http.get<BookDto[]>(`${this.url}/findAll`);

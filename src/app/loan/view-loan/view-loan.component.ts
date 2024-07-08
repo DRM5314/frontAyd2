@@ -20,7 +20,7 @@ export class ViewLoanComponent {
   }
 
 
-  getStartSale(){
+  startLoan(){
     this.loan = null;
     this.router.navigate(['/loans/list-loans']);
   }

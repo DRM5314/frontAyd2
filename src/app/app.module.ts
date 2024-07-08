@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MenubarModule} from 'primeng/menubar';
 import { AppRoutingModule } from './app-routing.module';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TableModule} from 'primeng/table';
 import {ButtonModule} from "primeng/button";
 import {DialogModule} from 'primeng/dialog';
@@ -18,11 +18,12 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {SidebarModule} from "primeng/sidebar";
 import {CardModule} from "primeng/card";
 import {SplitterModule} from "primeng/splitter";
+import { HomeComponent } from './home/home.component';
+import {InterceptorService} from "./auth/interceptor.service";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +42,11 @@ import {SplitterModule} from "primeng/splitter";
     SidebarModule,
     CardModule,
     FormsModule,
-    SplitterModule
+    SplitterModule,
+    NavbarComponent,
+    HomeComponent
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

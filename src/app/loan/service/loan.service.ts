@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {BookCreateDto, BookDto} from "../../../model";
+import {environment} from "../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import {BookCreateDto, BookDto} from "../../../model";
 export class LoanService {
 
   constructor(private http:HttpClient) { }
-  private url: string = "http://localhost:3000/lb/api/loan";
+  private baseUrl = environment.apiUrl;
+  private url: string = `${this.baseUrl}/lb/api/loan`;
 
   public getBooks():Observable<BookDto[]>{
     return this.http.get<BookDto[]>(`${this.url}/findAll`);
