@@ -26,6 +26,7 @@ pipeline{
 
         stage('Package') {
             steps {
+                sh 'ng build'
                 echo 'stage for build'
             }
         }
@@ -40,9 +41,9 @@ pipeline{
                 withCredentials([sshUserPrivateKey(credentialsId: 'key-ec2-deploy', keyFileVariable: 'SSH_KEY')]) {
                 script {
                         sh """
-                        ssh -i $SSH_KEY $EC2_INSTANCE 'sudo pkill -f "java -jar $REMOTE_PATH"'
+                        
                         scp -v -o StrictHostKeyChecking=no -i $SSH_KEY  $PATH_TO_JAR $EC2_INSTANCE:$REMOTE_PATH
-                        ssh -v -o StrictHostKeyChecking=no -i $SSH_KEY $EC2_INSTANCE 'sudo java -jar $REMOTE_PATH --spring.profiles.active=master > /dev/null 2>&1 &'
+                        
                         """
                     }
                 }
