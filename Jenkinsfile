@@ -14,7 +14,7 @@ pipeline{
 
        stage('Clone-Repository') {
            steps {
-               git branch: "${env.BRANCH_NAME}", url: 'https://github.com/DRM5314/frontAyd2.git'
+               git branch: "mains", url: 'https://github.com/DRM5314/frontAyd2.git'
                echo 'Repo clone successful'
            }
         }
