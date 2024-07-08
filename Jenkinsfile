@@ -1,7 +1,7 @@
 pipeline{
         agent any
         tools {
-                maven 'node'
+                node 'node'
             }
         environment {
                 EMAIL = 'davidrodolfo-martinezmiranda@cunoc.edu.gt'
