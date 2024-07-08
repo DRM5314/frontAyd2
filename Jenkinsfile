@@ -1,7 +1,7 @@
 pipeline{
         agent any
         tools {
-                node 'node'
+                nodejs 'node'
             }
         environment {
                 EMAIL = 'davidrodolfo-martinezmiranda@cunoc.edu.gt'
