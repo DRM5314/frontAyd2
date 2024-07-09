@@ -1,0 +1,24 @@
+<body>
+<div class="login-container">
+    <div class="login-card">
+        <h1>Login</h1>
+        <form [formGroup]="loginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" formControlName="username" required>
+                <small class="p-error block" *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].dirty">
+                  Username es requerido!
+                </small>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password"  formControlName="password" required>
+              <small class="p-error block" *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].dirty">
+                password es requerido!
+              </small>
+            </div>
+            <button class="login-button" (click)="onSubmit()" [disabled]="loginForm.invalid">Login</button>
+        </form>
+    </div>
+</div>
+</body>
