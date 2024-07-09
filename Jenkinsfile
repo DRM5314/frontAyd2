@@ -11,7 +11,15 @@ pipeline{
                 REMOTE_PATH = '/home/ubuntu/library-0.0.1-SNAPSHOT.jar'
         }
         stages {
-
+        stage('Clean Workspace') {
+            steps {
+                script {
+                    // Eliminar solo archivos y carpetas específicos
+                    sh 'rm -rf ./dist' // Eliminar la carpeta de distribución, por ejemplo
+                    sh 'rm -rf ./node_modules' // Eliminar las dependencias instaladas, si es necesario
+                }
+            }
+        }
        stage('Clone-Repository') {
            steps {
                git branch: "main", url: 'https://github.com/DRM5314/frontAyd2.git'
