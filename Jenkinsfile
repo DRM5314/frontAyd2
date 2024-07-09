@@ -44,9 +44,8 @@ pipeline{
                 withCredentials([sshUserPrivateKey(credentialsId: 'key-ec2-deploy', keyFileVariable: 'SSH_KEY')]) {
                 script {
                         sh """
-
                         scp -v -o StrictHostKeyChecking=no -i $SSH_KEY -r $PATH_TO_DIST $EC2_INSTANCE:$REMOTE_PATH
-
+                        ssh -v -o StrictHostKeyChecking=no -i $SSH_KEY $EC2_INSTANCE 'cd /home/ubuntu/CI-CD-FRONT/ && ng serve --host 0.0.0.0 --port 4200 --ssl-key /home/ubuntu/ssl/key.pem --ssl-cert /home/ubuntu/ssl/cert.pem > /dev/null 2>&1 &'
                         """
                     }
                 }
