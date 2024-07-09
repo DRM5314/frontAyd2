@@ -8,7 +8,7 @@ pipeline{
                 SSH_KEY = credentials('key-ec2-deploy')
                 EC2_INSTANCE = 'ubuntu@ec2-3-80-117-32.compute-1.amazonaws.com'
                 PATH_TO_DIST = '/var/lib/jenkins/workspace/CI-CD-FRONT/dist'
-                REMOTE_PATH = '/home/ubuntu/dist'
+                REMOTE_PATH = '/var/www/dist'
         }
         stages {
         stage('Clean Workspace') {
@@ -44,8 +44,8 @@ pipeline{
                 withCredentials([sshUserPrivateKey(credentialsId: 'key-ec2-deploy', keyFileVariable: 'SSH_KEY')]) {
                 script {
                         sh """
-                        
-                        scp -v -o StrictHostKeyChecking=no -i $SSH_KEY -r $PATH_TO_JAR $EC2_INSTANCE:$REMOTE_DIST
+                        ssh -i $SSH_KEY $EC2_INSTANCE 'sudo rm -r $REMOTE_PATH"'
+                        scp -v -o StrictHostKeyChecking=no -i $SSH_KEY -r $PATH_TO_DIST $EC2_INSTANCE:$REMOTE_PATH
                         
                         """
                     }
