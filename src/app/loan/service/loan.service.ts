@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {BookCreateDto, BookDto} from "../../../model";
+import {BookCreateDto, BookDto, LoanDto} from "../../../model";
 import {environment} from "../../../environments/environment.development";
 
 @Injectable({
@@ -21,5 +21,15 @@ export class LoanService {
   // @ts-ignore
   public addLoan(postData:any, type:string):Observable<any>{
     return this.http.post<BookCreateDto>(`${this.url}`,postData);
+  }
+
+  public getLoansRetunsNow():Observable<any>{
+    return this.http.get<LoanDto[]>(`${this.url}/return-now`);
+  }
+  public getLoansSanction():Observable<any>{
+    return this.http.get<LoanDto[]>(`${this.url}/sanction`);
+  }
+  public getTotalCash():Observable<any>{
+    return this.http.get<LoanDto[]>(`${this.url}/total-cash`);
   }
 }

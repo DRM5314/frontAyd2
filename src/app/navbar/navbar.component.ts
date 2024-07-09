@@ -71,6 +71,32 @@ export class NavbarComponent implements OnInit {
       visible: this.authService.hasRequiredRol('ADMIN') || this.authService.hasRequiredRol('STUDENT') ,
       icon: 'pi pi-fw pi-power-off',
       routerLink: '/logout',
+    },
+    {
+      label: 'Reportes',
+      icon: 'pi pi-fw pi-check',
+      items:[
+        {
+          label: 'Devoluciones ahora',
+          icon: 'pi pi-fw pi-check',
+          routerLink: '/report/loans-now',
+        },
+        {
+          label: 'Libros en mora',
+          icon: 'pi pi-fw pi-check',
+          routerLink: '/report/loans-sanction',
+        },
+        {
+          label: 'Total recaudado',
+          icon: 'pi pi-fw pi-check',
+          routerLink: '/report/total-cash',
+        },
+        {
+          label: 'Carrera con mas prestamos',
+          icon: 'pi pi-fw pi-check',
+          routerLink: '/report/carrer-more-loans',
+        }
+      ]
     }
   ]
 }

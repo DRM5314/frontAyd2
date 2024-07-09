@@ -71,6 +71,23 @@ const routes: Routes = [
     path: 'logout',
     loadComponent: () => import('./auth/logout/logout.component')
       .then(c => c.LogoutComponent)
+  },
+  {
+    path:'report',
+    data: { requireAuthentication: true, requiredRol: ['ADMIN'] },
+    canActivate: mapToCanActivate([AuthGuard]),
+    children:[
+      {
+        path:'loans-now',
+        loadComponent:() =>import('./loan/returns-now/returns-now.component')
+          .then(c=>c.ReturnsNowComponent)
+      },
+      {
+        path:'loans-sanction',
+        loadComponent:() =>import('./loan/view-sanctions/view-sanctions.component')
+          .then(c=>c.ViewSanctionsComponent)
+      }
+    ]
   }
 ];
 

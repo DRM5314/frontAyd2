@@ -69,9 +69,18 @@ export class LoanDto{
   laonDate!:string;
   returnDate!:string;
   state!:string;
+  loan_fee!:number;
+  penalized_fee!:number;
+  sanction_fee!:number;
 }
 export class Credentials{
   username!: string;
   password!: string;
+}
+
+export class reportTotalCashDto{
+  loans!:LoanDto[];
+  totalCashSanction!:number;
+  totalCashNormal!:number;
 }
 
