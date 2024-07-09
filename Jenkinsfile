@@ -40,11 +40,6 @@ pipeline{
         }
 
      stage('Deploy') {
-            when {
-                expression {
-                    return env.BRANCH_NAME == 'main'
-                }
-            }
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'key-ec2-deploy', keyFileVariable: 'SSH_KEY')]) {
                 script {
