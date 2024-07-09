@@ -26,7 +26,7 @@ pipeline{
 
         stage('Package') {
             steps {
-                sh 'npx ng build --configuration production'
+                sh 'npx ng build --configuration production --verbose'
                 echo 'stage for build'
             }
         }
