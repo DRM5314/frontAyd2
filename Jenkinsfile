@@ -7,8 +7,8 @@ pipeline{
                 EMAIL = 'davidrodolfo-martinezmiranda@cunoc.edu.gt'
                 SSH_KEY = credentials('key-ec2-deploy')
                 EC2_INSTANCE = 'ubuntu@ec2-3-80-117-32.compute-1.amazonaws.com'
-                PATH_TO_JAR = '/var/lib/jenkins/workspace/ci-cd-front/target/library-0.0.1-SNAPSHOT.jar'
-                REMOTE_PATH = '/home/ubuntu/library-0.0.1-SNAPSHOT.jar'
+                PATH_TO_DIST = '/var/lib/jenkins/workspace/CI-CD-FRONT/dist'
+                REMOTE_PATH = '/home/ubuntu/dist'
         }
         stages {
         stage('Clean Workspace') {
@@ -50,7 +50,7 @@ pipeline{
                 script {
                         sh """
                         
-                        scp -v -o StrictHostKeyChecking=no -i $SSH_KEY  $PATH_TO_JAR $EC2_INSTANCE:$REMOTE_PATH
+                        scp -v -o StrictHostKeyChecking=no -i $SSH_KEY -r $PATH_TO_JAR $EC2_INSTANCE:$REMOTE_DIST
                         
                         """
                     }
