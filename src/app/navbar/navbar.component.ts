@@ -89,12 +89,14 @@ export class NavbarComponent implements OnInit {
         {
           label: 'Total recaudado',
           icon: 'pi pi-fw pi-check',
-          routerLink: '/report/total-cash',
+          routerLink: '/report/with-date',
+          queryParams: {type: 'total-cash',title: 'Total recaudado'}
         },
         {
           label: 'Carrera con mas prestamos',
           icon: 'pi pi-fw pi-check',
-          routerLink: '/report/carrer-more-loans',
+          routerLink: '/report/with-date',
+          queryParams: {type: 'more-career',title: 'Carreras con mas prestamos'}
         }
       ]
     }

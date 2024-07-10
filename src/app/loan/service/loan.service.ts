@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {BookCreateDto, BookDto, LoanDto} from "../../../model";
+import {BookCreateDto, BookDto, LoanDto, reportTotalCashDto} from "../../../model";
 import {environment} from "../../../environments/environment.development";
+import {ReportTotalCashComponent} from "../report-total-cash/report-total-cash.component";
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,10 @@ export class LoanService {
   public getLoansSanction():Observable<any>{
     return this.http.get<LoanDto[]>(`${this.url}/sanction`);
   }
-  public getTotalCash():Observable<any>{
-    return this.http.get<LoanDto[]>(`${this.url}/total-cash`);
+  public getTotalCash(postData:any):Observable<any>{
+    return this.http.post<reportTotalCashDto>(`${this.url}/total-cash`,postData);
+  }
+  public getMoreCareerLoans(postData:any):Observable<any>{
+    return this.http.post<reportTotalCashDto>(`${this.url}/more-career`,postData);
   }
 }

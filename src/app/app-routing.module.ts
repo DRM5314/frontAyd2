@@ -86,6 +86,21 @@ const routes: Routes = [
         path:'loans-sanction',
         loadComponent:() =>import('./loan/view-sanctions/view-sanctions.component')
           .then(c=>c.ViewSanctionsComponent)
+      },
+      {
+        path:'with-date',
+        loadComponent:() =>import('./loan/dialog-input-report/dialog-input-report.component')
+          .then(c=>c.DialogInputReportComponent)
+      },
+      {
+        path:'total-cash',
+        loadComponent:() =>import('./loan/report-total-cash/report-total-cash.component')
+          .then(c=>c.ReportTotalCashComponent)
+      },
+      {
+        path:'more-career',
+        loadComponent:() =>import('./loan/career-more-loans/career-more-loans.component')
+          .then(c=>c.CareerMoreLoansComponent)
       }
     ]
   }
