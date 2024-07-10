@@ -82,5 +82,11 @@ export class reportTotalCashDto{
   loans!:LoanDto[];
   totalCashSanction!:number;
   totalCashNormal!:number;
+  totalPenalized!:number;
+}
+export class reportMoreLoansCareer{
+  career!:CareerDto;
+  loans!:LoanDto[];
+  totalLoans!:number;
 }
 

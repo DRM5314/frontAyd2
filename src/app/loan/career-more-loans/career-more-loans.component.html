@@ -1,0 +1,52 @@
+<script src="register.component.ts"></script>
+<div *ngIf=moreCareerLoans class="flex justify-content-between">
+  <h2>Total Prestamos</h2>
+  <h3>Carrera: {{moreCareerLoans.career.name}}</h3>
+  <h3>Total prestamos :{{moreCareerLoans.totalLoans}}</h3>
+</div>
+
+<p-table *ngIf=moreCareerLoans [value]="moreCareerLoans.loans">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="carnet">Carnet <p-sortIcon field="carnet"></p-sortIcon></th>
+      <th>Nombre</th>
+      <th>Libro</th>
+      <th>Fecha Inicio</th>
+      <th>Fecha Devolucion</th>
+      <th>Tarifa N</th>
+      <th>Tarifa S</th>
+      <th>Tarifa P</th>
+      <th>Estado</th>
+    </tr>
+    <tr>
+      <th><p-columnFilter type="text" field="carnet" >Code</p-columnFilter></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <td></td>
+      <td></td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-laonDto>
+    <tr>
+      <td>{{laonDto.carnet.carnet}}</td>
+      <td>{{laonDto.carnet.name}}</td>
+      <td>{{laonDto.bookCode.title}}</td>
+      <td>{{laonDto.laonDate}}</td>
+      <td>{{laonDto.returnDate}}</td>
+      <td>{{laonDto.loan_fee}}</td>
+      <td>{{laonDto.penalized_fee}}</td>
+      <td>{{laonDto.sanction_fee}}</td>
+      <td>{{laonDto.state}}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!--<app-add-loan [displayAddModal]="displayAddEditModal" (clickClose) = "hideAddModal($event)" (clickAddEdit)="saveUpdatePartoToList($event)" [selectBook]="selectBook"></app-add-loan>-->
+
+<p-toast position="bottom-right"></p-toast>
