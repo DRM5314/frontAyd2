@@ -1,0 +1,27 @@
+<p-dialog header="{{title}} Prestamo" [(visible)]="displayAddModal" [modal]="true" [style]="{width: '50vw'}"
+          [draggable]="false" [resizable]="false" (onHide)="onHideDialog()">
+  <form [formGroup]="dateFormSimple" >
+    <div class="field">
+      <label class="block" for="init">Inicio</label>
+      <p-inputMask  id="init" mask="9999-99-99" placeholder="2024-01-01" slotChar="2024-01-01" formControlName="init"></p-inputMask>
+      <small class="p-error block" *ngIf="dateFormSimple.controls['init'].invalid && dateFormSimple.controls['init'].dirty">
+        Fecha inicio es requerido!
+      </small>
+    </div>
+
+    <div class="field">
+      <label class="block" for="end">Fin</label>
+      <p-inputMask  id="end" mask="9999-99-99" placeholder="2024-12-01" slotChar="2024-12-31" formControlName="end"></p-inputMask>
+      <small class="p-error block" *ngIf="dateFormSimple.controls['end'].invalid && dateFormSimple.controls['end'].dirty">
+        Fecha fin es requerido
+      </small>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+
+    <p-button (click)="send()" label="{{type}}" styleClass="p-button-text" [disabled]="dateFormSimple.invalid"></p-button>
+
+  </ng-template>
+
+</p-dialog>
