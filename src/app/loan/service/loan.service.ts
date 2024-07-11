@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {BookCreateDto, BookDto, LoanDto, reportTotalCashDto} from "../../../model";
+import {
+  BookCreateDto,
+  BookDto,
+  LoanDto,
+  reportStudentLoansNotCancelled,
+  reportStudentMoreLoans,
+  reportTotalCashDto
+} from "../../../model";
 import {environment} from "../../../environments/environment.development";
 import {ReportTotalCashComponent} from "../report-total-cash/report-total-cash.component";
 
@@ -35,5 +42,11 @@ export class LoanService {
   }
   public getMoreCareerLoans(postData:any):Observable<any>{
     return this.http.post<reportTotalCashDto>(`${this.url}/more-career`,postData);
+  }
+  public getStudentMoreLoans(postData:any):Observable<any>{
+    return this.http.post<reportStudentMoreLoans>(`${this.url}/more-student`,postData);
+  }
+  public getStudentLoansNotCancelled(postData:any):Observable<any>{
+    return this.http.get<reportStudentLoansNotCancelled>(`${this.url}/not-cancell-by-carnet/${postData}`);
   }
 }
