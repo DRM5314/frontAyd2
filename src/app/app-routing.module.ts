@@ -101,6 +101,31 @@ const routes: Routes = [
         path:'more-career',
         loadComponent:() =>import('./loan/career-more-loans/career-more-loans.component')
           .then(c=>c.CareerMoreLoansComponent)
+      },
+      {
+        path:'input-payment-more-student',
+        loadComponent:() =>import('./loan/dialog-input-carnet-report/dialog-input-carnet-report.component')
+          .then(c=>c.DialogInputCarnetReportComponent)
+      },
+      {
+        path:'payment-more-student',
+        loadComponent:() =>import('./loan/report-student-payment-sanction/report-student-payment-sanction.component')
+          .then(c=>c.ReportStudentPaymentSanctionComponent)
+      },
+      {
+        path:'student-more-loans',
+        loadComponent:() =>import('./loan/report-student-more-loans/report-student-more-loans.component')
+          .then(c=>c.ReportStudentMoreLoansComponent)
+      },
+      {
+        path:'not-cancell-by-carnet',
+        loadComponent:() =>import('./loan/report-student-loans-not-cancelled/report-student-loans-not-cancelled.component')
+          .then(c=>c.ReportStudentLoansNotCancelledComponent)
+      },
+      {
+        path:'with-entry-code',
+        loadComponent:() =>import('./loan/entry-simple/entry-simple.component')
+          .then(c=>c.EntrySimpleComponent)
       }
     ]
   }

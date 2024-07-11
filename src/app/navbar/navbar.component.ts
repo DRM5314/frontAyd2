@@ -48,6 +48,12 @@ export class NavbarComponent implements OnInit {
         {
           label:'Nuevo prestamo',
           routerLink: '/loans/list-loans'
+        },
+        {
+          label: 'Devolver',
+          icon: 'pi pi-fw pi-check',
+          routerLink: '/report/with-entry-code',
+          queryParams: {typeLabel: 'carnet', type: 'devolutions',title: 'Prestamos de estudiante'}
         }
       ]
     },
@@ -75,6 +81,7 @@ export class NavbarComponent implements OnInit {
     {
       label: 'Reportes',
       icon: 'pi pi-fw pi-check',
+      visible: this.authService.hasRequiredRol('ADMIN'),
       items:[
         {
           label: 'Devoluciones ahora',
@@ -97,6 +104,24 @@ export class NavbarComponent implements OnInit {
           icon: 'pi pi-fw pi-check',
           routerLink: '/report/with-date',
           queryParams: {type: 'more-career',title: 'Carreras con mas prestamos'}
+        },
+        {
+          label: 'Estudiante con pagos de mora',
+          icon: 'pi pi-fw pi-check',
+          routerLink: '/report/input-payment-more-student',
+          queryParams: {type: 'payment-more-student',title: 'Estudiante pagos de mora'}
+        },
+        {
+          label: 'Estudiante con mas prestamos',
+          icon: 'pi pi-fw pi-check',
+          routerLink: '/report/with-date',
+          queryParams: {type: 'student-more-loans',title: 'Estudiante con mas prestamos'}
+        },
+        {
+          label: 'Prestamos no cancelados',
+          icon: 'pi pi-fw pi-check',
+          routerLink: '/report/with-entry-code',
+          queryParams: {typeLabel: 'carnet', type: 'not-cancell-by-carnet',title: 'Prestamos de estudiante'}
         }
       ]
     }
