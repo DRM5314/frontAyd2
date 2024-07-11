@@ -20,6 +20,8 @@ import {CardModule} from "primeng/card";
 import {SplitterModule} from "primeng/splitter";
 import { HomeComponent } from './home/home.component';
 import {InterceptorService} from "./auth/interceptor.service";
+import { ReportStudentMoreLoansComponent } from './loan/report-student-more-loans/report-student-more-loans.component';
+import { ReportStudentLoansNotCancelledComponent } from './loan/report-student-loans-not-cancelled/report-student-loans-not-cancelled.component';
 
 @NgModule({
   declarations: [
