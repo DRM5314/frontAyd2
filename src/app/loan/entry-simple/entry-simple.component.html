@@ -1,0 +1,20 @@
+<p-dialog header="Consulta {{title}}" [(visible)]="displayAddModal" [modal]="true" [style]="{width: '50vw'}"
+          [draggable]="false" [resizable]="false" (onHide)="onHideDialog()">
+  <form [formGroup]="dateFormSimple" >
+    <div class="field">
+      <label class="block" for="code">{{ typeLabel }}</label>
+      <input type="code" pInputText id="code" formControlName="code">
+      <small class="p-error block" *ngIf="dateFormSimple.controls['code'].invalid && dateFormSimple.controls['code'].dirty">
+        {{ typeLabel}} es requerido!
+      </small>
+    </div>
+
+  </form>
+
+  <ng-template pTemplate="footer">
+
+    <p-button (click)="send()" label="{{type}}" styleClass="p-button-text" [disabled]="dateFormSimple.invalid"></p-button>
+
+  </ng-template>
+
+</p-dialog>

@@ -62,6 +62,13 @@ export class DialogInputReportComponent implements OnInit{
             end: this.dateFormSimple.get('end')?.value
           }
         });
+      } else if (this.type === 'student-more-loans') {
+        this.router.navigate(['/report/student-more-loans'], {
+          queryParams: {
+            init: this.dateFormSimple.get('init')?.value,
+            end: this.dateFormSimple.get('end')?.value
+          }
+        });
       }
     }
     validateSimpleForm(){
