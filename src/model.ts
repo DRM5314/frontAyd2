@@ -89,4 +89,24 @@ export class reportMoreLoansCareer{
   loans!:LoanDto[];
   totalLoans!:number;
 }
+export class reportPaymentSanction{
+  loan!:LoanDto;
+  datePayment!:string;
+  type!:string;
+}
+export class reportStudentPaymentSanction{
+  carnet!:StudentDto;
+  loans!:reportPaymentSanction[];
+  totalCash!:number;
+}
 
+export class reportStudentMoreLoans{
+  student!:StudentDto;
+  loans!:LoanDto[];
+  totalLoans!:number;
+}
+
+export class reportStudentLoansNotCancelled{
+  student!:StudentDto;
+  loans!:LoanDto[];
+}
