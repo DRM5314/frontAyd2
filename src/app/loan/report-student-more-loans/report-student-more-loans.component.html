@@ -1,0 +1,47 @@
+<script src="register.component.ts"></script>
+<div *ngIf=moreStudentLoans class="flex justify-content-between">
+  <h2>Total Prestamos</h2>
+  <h3>Carnet: {{moreStudentLoans.student.carnet}}</h3>
+  <h3>Estudiante: {{moreStudentLoans.student.name}}</h3>
+  <h3>Total prestamos :{{moreStudentLoans.totalLoans}}</h3>
+</div>
+
+<p-table *ngIf=moreStudentLoans [value]="moreStudentLoans.loans">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Libro</th>
+      <th>Fecha Inicio</th>
+      <th>Fecha Devolucion</th>
+      <th>Tarifa N</th>
+      <th>Tarifa S</th>
+      <th>Tarifa P</th>
+      <th>Estado</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <td></td>
+      <td></td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-laonDto>
+    <tr>
+      <td>{{laonDto.bookCode.title}}</td>
+      <td>{{laonDto.laonDate}}</td>
+      <td>{{laonDto.returnDate}}</td>
+      <td>{{laonDto.loan_fee}}</td>
+      <td>{{laonDto.penalized_fee}}</td>
+      <td>{{laonDto.sanction_fee}}</td>
+      <td>{{laonDto.state}}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!--<app-add-loan [displayAddModal]="displayAddEditModal" (clickClose) = "hideAddModal($event)" (clickAddEdit)="saveUpdatePartoToList($event)" [selectBook]="selectBook"></app-add-loan>-->
+
+<p-toast position="bottom-right"></p-toast>
