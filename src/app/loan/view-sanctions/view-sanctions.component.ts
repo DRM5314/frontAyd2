@@ -20,6 +20,7 @@ export class ViewSanctionsComponent implements OnInit{
 
   private loanService = inject(LoanService);
   private router = inject(Router);
+  private messageService = inject(MessageService);
   loans!:LoanDto[];
 
   ngOnInit(): void {
@@ -27,7 +28,9 @@ export class ViewSanctionsComponent implements OnInit{
       response =>{
         this.loans = response;
       },
-      error => console.log(error.error)
+      error => {
+        this.messageService.add({severity:'error',summary:'Error',detail: error.error})
+      }
     );
   }
 }
