@@ -128,7 +128,25 @@ const routes: Routes = [
           .then(c=>c.EntrySimpleComponent)
       }
     ]
+  },
+  {
+    path:'me',
+    data: { requireAuthentication: true, requiredRol: ['STUDENT'] },
+    canActivate: mapToCanActivate([AuthGuard]),
+    children:[
+      {
+        path:'not-cancelled',
+        loadComponent:() =>import('./loan/report-student-loans-not-cancelled/report-student-loans-not-cancelled.component')
+          .then(c=>c.ReportStudentLoansNotCancelledComponent)
+      },
+      {
+        path:'payments',
+        loadComponent:() =>import('./loan/report-student-payment-sanction/report-student-payment-sanction.component')
+          .then(c=>c.ReportStudentPaymentSanctionComponent)
+      }
+    ]
   }
+
 ];
 
 @NgModule({

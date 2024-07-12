@@ -1,10 +1,11 @@
 
 <script src="register.component.ts"></script>
 <div *ngIf=studentPaymentsSanction class="flex justify-content-between">
-  <h2>Pagos en mora</h2>
+  <h2 *ngIf="isReport">Pagos en mora</h2>
+  <h2 *ngIf="!isReport">Pagos</h2>
   <h3>Estudiante: {{studentPaymentsSanction.carnet.name}}</h3>
   <h3>Carnet: {{studentPaymentsSanction.carnet.carnet}}</h3>
-  <h3>Total sancion:{{studentPaymentsSanction.totalCash}}</h3>
+  <h3>Total pagos:{{studentPaymentsSanction.totalCash}}</h3>
 </div>
 
 <p-table *ngIf=studentPaymentsSanction [value]="studentPaymentsSanction.loans">

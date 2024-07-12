@@ -37,14 +37,25 @@ export class ReportStudentLoansNotCancelledComponent implements OnInit{
     });
   }
   obtenerPrestamos(){
-    this.loanService.getStudentLoansNotCancelled(this.carnet).subscribe(
-      response => {
-        this.studentLoans = response;
-      },
-      error => {
-        this.messageService.add({severity:'error',summary:'Error',detail: error.error})
-      }
-    )
+    if (this.carnet !== "null"){
+      this.loanService.getStudentLoansNotCancelled(this.carnet).subscribe(
+        response => {
+          this.studentLoans = response;
+        },
+        error => {
+          this.messageService.add({severity:'error',summary:'Error',detail: error.error})
+        }
+      );
+    }else{
+      this.loanService.getNotCancelledByMe().subscribe(
+        response => {
+          this.studentLoans = response;
+        },
+        error => {
+          this.messageService.add({severity:'error',summary:'Error',detail: error.error})
+        }
+      );
+    }
   }
   regresar(loan:LoanDto):void {
     this.confirmationService.confirm({

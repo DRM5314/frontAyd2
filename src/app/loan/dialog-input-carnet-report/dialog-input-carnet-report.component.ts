@@ -48,7 +48,8 @@ export class DialogInputCarnetReportComponent implements OnInit{
         queryParams: {
           carnet: this.dateFormCarnet.get('carnet')?.value,
           init: this.dateFormCarnet.get('init')?.value,
-          end: this.dateFormCarnet.get('end')?.value
+          end: this.dateFormCarnet.get('end')?.value,
+          type: 'report'
         }
       });
     }

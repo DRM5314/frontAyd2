@@ -41,6 +41,31 @@ export class NavbarComponent implements OnInit {
       ]
     },
     {
+      label:'Mis prestamos',
+      icon: 'pi pi-fw pi-user',
+      visible: this.authService.hasRequiredRol('STUDENT') ,
+      items:[
+        {
+          label:'Prestamos activos',
+          routerLink:'/me/not-cancelled',
+          queryParams: {
+            code: 'null',
+            devolutions: 'false'
+          }
+        },
+        {
+          label:'Prestamos finalizados',
+          routerLink:'/me/payments',
+          queryParams: {
+            carnet: '',
+            init: '',
+            end: '',
+            type: 'null'
+          }
+        }
+      ]
+    },
+    {
       label: 'Prestamos',
       icon: 'pi pi-fw pi-user',
       visible: this.authService.hasRequiredRol('ADMIN'),

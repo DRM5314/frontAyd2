@@ -49,4 +49,7 @@ export class LoanService {
   public getStudentLoansNotCancelled(postData:any):Observable<any>{
     return this.http.get<reportStudentLoansNotCancelled>(`${this.url}/not-cancell-by-carnet/${postData}`);
   }
+  public getNotCancelledByMe():Observable<any>{
+    return this.http.get<reportStudentLoansNotCancelled>(`${this.url}/not-cancelled-by-me`);
+  }
 }

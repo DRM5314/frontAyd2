@@ -16,8 +16,10 @@ export class PaymentService {
     return this.http.post<reportStudentPaymentSanction>(`${this.url}`,postData);
   }
   public getReport(postData:any):Observable<reportStudentPaymentSanction>{
-    console.log(postData);
     return this.http.post<reportStudentPaymentSanction>(`${this.url}/more-student`,postData);
+  }
+  public getMyPayments():Observable<reportStudentPaymentSanction>{
+    return this.http.get<reportStudentPaymentSanction>(`${this.url}/payment-me`);
   }
 
 }

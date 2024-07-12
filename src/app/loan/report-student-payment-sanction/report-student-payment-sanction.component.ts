@@ -25,12 +25,18 @@ export class ReportStudentPaymentSanctionComponent  implements OnInit{
   private init!:string;
   private end!:string
   private route = inject(ActivatedRoute);
-
+  isReport!:boolean;
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.carnet = params['carnet'];
       this.init = params['init'];
       this.end = params['end'];
+      this.isReport = (params['type']==='report');
+      this.getPayment()
+    });
+  }
+  getPayment(){
+    if (this.isReport){
       this.loanService.getReport({carnet:this.carnet,init: this.init, end: this.end}).subscribe(
         response => {
           this.studentPaymentsSanction = response;
@@ -38,7 +44,17 @@ export class ReportStudentPaymentSanctionComponent  implements OnInit{
         error => {
           this.messageService.add({severity:'error',summary:'Error',detail: error.error})
         }
-      )
-    });
+      );
+    }else{
+      this.loanService.getMyPayments().subscribe(
+        response => {
+          console.log(response);
+          this.studentPaymentsSanction = response;
+        },
+        error => {
+          this.messageService.add({severity:'error',summary:'Error',detail: error.error})
+        }
+      );
+    }
   }
 }
