@@ -23,7 +23,7 @@
 
     <div class="field">
       <label class="block" for="dteBirth">Fecha cumpleaños</label>
-      <input type="text" pInputText id="dteBirth" formControlName="dteBirth">
+      <p-inputMask  id="dteBirth" mask="9999-99-99" placeholder="2024-01-01" slotChar="2024-01-01" formControlName="dteBirth"></p-inputMask>
       <small class="p-error block" *ngIf="studentForm.controls['dteBirth'].invalid && studentForm.controls['dteBirth'].dirty">
         Fecha cumpleaños es requerido!
       </small>

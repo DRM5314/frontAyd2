@@ -6,17 +6,16 @@ import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angula
 import {InputNumberModule} from "primeng/inputnumber";
 import {InputTextModule} from "primeng/inputtext";
 import {ListboxModule} from "primeng/listbox";
-import {ConfirmationService, MessageService, SharedModule} from "primeng/api";
-import {BookCreateDto, CareerDto, EditorialDto, StudentCreateDto, StudentDto} from "../../../model";
-import {BookService} from "../../book/service/book.service";
-import {EditorialService} from "../../editorial/service/editorial.service";
+import { MessageService, SharedModule} from "primeng/api";
+import {CareerDto, StudentCreateDto, StudentDto} from "../../../model";
 import {StudentService} from "../service/student.service";
 import {CareerService} from "../../career/service/career.service";
+import {InputMaskModule} from "primeng/inputmask";
 
 @Component({
   selector: 'app-add-edit-student',
   standalone: true,
-    imports: [CommonModule, ButtonModule, DialogModule, FormsModule, InputNumberModule, InputTextModule, ListboxModule, ReactiveFormsModule, SharedModule],
+    imports: [CommonModule, ButtonModule, DialogModule, FormsModule, InputNumberModule, InputTextModule, ListboxModule, ReactiveFormsModule, SharedModule, InputMaskModule],
   templateUrl: './add-edit-student.component.html',
   styleUrls: ['./add-edit-student.component.css']
 })
