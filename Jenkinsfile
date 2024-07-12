@@ -6,7 +6,7 @@ pipeline{
         environment {
                 EMAIL = 'davidrodolfo-martinezmiranda@cunoc.edu.gt'
                 SSH_KEY = credentials('key-ec2-deploy')
-                EC2_INSTANCE = 'ubuntu@ec2-44-203-204-41.compute-1.amazonaws.com'
+                EC2_INSTANCE = 'ubuntu@ec2-52-91-103-199.compute-1.amazonaws.com'
                 PATH_TO_DIST = '/var/lib/jenkins/workspace/CI-CD-FRONT/dist/'
                 REMOTE_PATH = '/home/ubuntu'
         }
